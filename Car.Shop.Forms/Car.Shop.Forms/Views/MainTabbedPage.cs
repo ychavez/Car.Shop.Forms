@@ -12,7 +12,7 @@ namespace Car.Shop.Forms.Views
             Title = "Sell my car";
             Children.Add(new CarsForSale());
             Children.Add(new NearCars());
-           
+            Children.Add(new FavoriteCars());
            
         }
     }
