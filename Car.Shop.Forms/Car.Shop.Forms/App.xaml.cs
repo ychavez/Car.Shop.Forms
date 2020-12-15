@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Car.Shop.Forms.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,8 +10,7 @@ namespace Car.Shop.Forms
         public App()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainTabbedPage());
         }
 
         protected override void OnStart()
