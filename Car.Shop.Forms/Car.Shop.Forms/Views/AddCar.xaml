@@ -13,7 +13,7 @@
             <Entry x:Name="eYear" HorizontalOptions="FillAndExpand" Placeholder="Año" Keyboard="Numeric"/>
             <Entry x:Name="eDescription" HorizontalOptions="FillAndExpand" Placeholder="Descripcion" Keyboard="Text"/>
             <Entry x:Name="ePrice" HorizontalOptions="FillAndExpand" Placeholder="Precio" Keyboard="Numeric"/>
-            <Button x:Name="bAdd" Text="Agregar"/>
+            <Button x:Name="bAdd" Text="Agregar" Clicked="bAdd_Click"/>
             <Button x:Name="bPhoto" Text="Tomar foto"/>
             <Button x:Name="bMap" Text="Mapa"/>
 
