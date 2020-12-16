@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Car.Shop.Forms.Models
 {
-  public  class Car
+    public class Car
     {
         public int Id { get; set; }
         public string Brand { get; set; }
