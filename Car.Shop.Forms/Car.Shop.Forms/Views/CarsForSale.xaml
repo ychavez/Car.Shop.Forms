@@ -11,7 +11,7 @@
         <SearchBar Placeholder="Busca tu vehiculo" 
                   FontSize="Medium"
                   FontAttributes="Italic" 
-                  x:Name="searchBar"/>
+                  x:Name="searchBar" TextChanged="OnSearchCar"/>
         <ListView x:Name="carList" RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>

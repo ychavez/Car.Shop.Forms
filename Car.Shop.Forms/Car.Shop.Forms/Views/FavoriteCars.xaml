@@ -8,8 +8,17 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout>
-                                <Label Text="dato"/>
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                <Label Text="{Binding Id}" IsVisible="False"/>
+                                <Image Source="{Binding PhotoUrl}"/>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Brand}"/>
+                                        <Label Text="{Binding Model}"/>
+                                    </StackLayout>
+                                    <Label Text="{Binding Description}"/>
+                                    <Label Text="{Binding Price, StringFormat='{0:C}'}"/>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
