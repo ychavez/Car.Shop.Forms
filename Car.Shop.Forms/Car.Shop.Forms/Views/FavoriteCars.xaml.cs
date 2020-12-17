@@ -30,8 +30,7 @@ namespace Car.Shop.Forms.Views
            bool accept = await DisplayAlert("Eliminar favorito", "Esta usted seguro que quiere eliminar este coche?", "Si", "No");
 
             if (!accept)
-                return;
-            
+                return;  
 
             new DataBaseManager().DeleteFavorite(((FavoriteCar)((Button)sender).BindingContext).FavoriteCarId);
             LoadList();
