@@ -59,6 +59,7 @@ namespace Car.Shop.Forms.Context
             });
             return true;
         }
+        public void DeleteFavorite(int Id) => db.Delete<FavoriteCar>(Id);
 
     }
 }

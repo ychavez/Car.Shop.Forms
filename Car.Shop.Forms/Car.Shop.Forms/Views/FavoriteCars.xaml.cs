@@ -1,4 +1,5 @@
 ﻿using Car.Shop.Forms.Context;
+using Car.Shop.Forms.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,18 @@ namespace Car.Shop.Forms.Views
         private void MessageCallback(Page obj) => LoadList();
 
         void LoadList() => carList.ItemsSource = new DataBaseManager().GetFavoriteCars();
+
+        private async void Eliminar_Clicked(object sender, EventArgs e)
+        {
+           bool accept = await DisplayAlert("Eliminar favorito", "Esta usted seguro que quiere eliminar este coche?", "Si", "No");
+
+            if (!accept)
+                return;
+            
+
+            new DataBaseManager().DeleteFavorite(((FavoriteCar)((Button)sender).BindingContext).FavoriteCarId);
+            LoadList();
+
+        }
     }
 }
