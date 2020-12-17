@@ -39,7 +39,8 @@ namespace Car.Shop.Forms.Views
             string searchTex = searchBar.Text.ToUpper();
             var carsSearched =
                 new RestService().GetCars().Where(x => x.Model.ToUpper().Contains(searchTex) ||
-                x.Description.ToUpper().Contains(searchTex) || x.Brand.ToUpper().Contains(searchTex)).ToList();
+                x.Description.ToUpper().Contains(searchTex) || 
+                x.Brand.ToUpper().Contains(searchTex)).ToList();
             carList.ItemsSource = carsSearched;
         }
     }
