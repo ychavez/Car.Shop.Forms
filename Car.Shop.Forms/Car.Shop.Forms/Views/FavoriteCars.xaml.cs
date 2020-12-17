@@ -17,7 +17,10 @@ namespace Car.Shop.Forms.Views
             InitializeComponent();
             Title = "Favoritos";
             LoadList();
+            MessagingCenter.Subscribe<Page>(this, "UpdateFavorite", MessageCallback);
         }
+
+        private void MessageCallback(Page obj) => LoadList();
 
         void LoadList() => carList.ItemsSource = new DataBaseManager().GetFavoriteCars();
     }

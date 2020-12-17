@@ -1,4 +1,5 @@
 ﻿using Car.Shop.Forms.DependencyServices;
+using Car.Shop.Forms.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,15 @@ namespace Car.Shop.Forms.Context
         public DataBaseManager()
         {
             db = DependencyService.Get<ISQLite>().GetConnection();
-            if (!TableExists("Car"))
-                db.CreateTable<Models.Car>();
+            Migrations();
+        }
+
+        private void Migrations()
+        {
+            if (TableExists("Car"))
+                db.DropTable<Models.Car>();
+            if (!TableExists("FavoriteCar"))
+                db.CreateTable<FavoriteCar>();
         }
 
         private bool TableExists(string tableName)
@@ -30,14 +38,25 @@ namespace Car.Shop.Forms.Context
             return (tableCount == 1);
         }
 
-        public List<Models.Car> GetFavoriteCars() => db.Query<Models.Car>("select * from car");
+        public List<FavoriteCar> GetFavoriteCars() => db.Query<FavoriteCar>("select * from FavoriteCar");
 
         public bool AddFavoriteCar(Models.Car car)
         {
-            if (db.Query<Models.Car>($"select * from car where id = {car.Id}").Count > 0)
+            if (db.Query<FavoriteCar>($"select * from FavoriteCar where id = {car.Id}").Count > 0)
                 return false;
 
-            db.Insert(car);
+            db.Insert(new FavoriteCar
+            {
+                Brand = car.Brand,
+                Description = car.Description,
+                Model = car.Model,
+                Year = car.Year,
+                PhotoUrl = car.PhotoUrl,
+                Price = car.Price,
+                Lat = car.Lat,
+                Lon = car.Lon,
+                Id = car.Id
+            });
             return true;
         }
 

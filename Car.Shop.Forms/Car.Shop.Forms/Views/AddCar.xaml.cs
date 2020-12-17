@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Car.Shop.Forms.Context;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +16,20 @@ namespace Car.Shop.Forms.Views
         {
             InitializeComponent();
         }
-        private async void bAdd_Click(object sender, EventArgs e) => await Navigation.PopAsync();
+        private async void bAdd_Click(object sender, EventArgs e)
+        {
+            new RestService().SetCars(new Models.Car
+            {
+                Brand = eBrand.Text,
+                Description = eDescription.Text,
+                Model = eModel.Text,
+                Price = decimal.Parse(ePrice.Text),
+                Year = int.Parse(eYear.Text),
+                PhotoUrl = "https://i.blogs.es/727241/ncv-06/450_1000.jpg"
+            });
+            await DisplayAlert("Agregado", "El auto se ha agregago", "Aceptar");
+            MessagingCenter.Send<Page>(this, "Update");
+            await Navigation.PopAsync();
+        }
     }
 }

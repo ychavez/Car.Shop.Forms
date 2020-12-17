@@ -17,17 +17,23 @@ namespace Car.Shop.Forms.Views
         {
             InitializeComponent();
             LoadList();
+            MessagingCenter.Subscribe<Page>(this, "Update", messageCallBack);
             Title = "Comprar";
         }
 
+        private void messageCallBack(Page obj) => LoadList();
         void onAdd(object sender, EventArgs e) => Navigation.PushAsync(new AddCar());
 
         void LoadList() => carList.ItemsSource = new RestService().GetCars();
 
-        private void OnFavorite_Clicked(object sender, EventArgs e) => DisplayAlert("AutoFavorito",
-            (new DataBaseManager().AddFavoriteCar(
-                (Models.Car)((Button)sender).BindingContext)) ? "Auto agregado con exito" : "El auto ya se encuentra en favoritos", "Ok");
 
+        private void OnFavorite_Clicked(object sender, EventArgs e)
+        {
+            DisplayAlert("AutoFavorito",
+              (new DataBaseManager().AddFavoriteCar(
+                  (Models.Car)((Button)sender).BindingContext)) ? "Auto agregado con exito" : "El auto ya se encuentra en favoritos", "Ok");
+            MessagingCenter.Send<Page>(this, "UpdateFavorite");
+        }
         void OnSearchCar(object sender, EventArgs e)
         {
             string searchTex = searchBar.Text.ToUpper();
