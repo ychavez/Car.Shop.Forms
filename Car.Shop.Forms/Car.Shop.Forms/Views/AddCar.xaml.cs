@@ -1,4 +1,5 @@
 ﻿using Car.Shop.Forms.Context;
+using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,21 @@ namespace Car.Shop.Forms.Views
             await DisplayAlert("Agregado", "El auto se ha agregago", "Aceptar");
             MessagingCenter.Send<Page>(this, "Update");
             await Navigation.PopAsync();
+        }
+
+        private async void bTakePhoto_Click(object sender, EventArgs e) {
+            if (Plugin.Media.CrossMedia.Current.IsTakePhotoSupported && Plugin.Media.CrossMedia.Current.IsCameraAvailable)
+            {
+                var photo = await Plugin.Media.CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions() { SaveToAlbum = false, SaveMetaData = false});
+
+                if (photo != null)
+                {
+                    ImgMain.Source = ImageSource.FromStream(() => { return photo.GetStream();});
+                }
+            
+            }
+
+
         }
     }
 }

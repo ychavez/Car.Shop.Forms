@@ -6,7 +6,7 @@
         <StackLayout>
             <Frame CornerRadius="10" HeightRequest="200" WidthRequest="200"
                    HorizontalOptions="Center">
-                <Image x:Name="imgMain" HorizontalOptions="Center" VerticalOptions="Center"/>
+                <Image x:Name="ImgMain" HorizontalOptions="Center" VerticalOptions="Center"/>
             </Frame>
             <Entry x:Name="eModel" HorizontalOptions="FillAndExpand" Placeholder="Modelo" Keyboard="Text"/>
             <Entry x:Name="eBrand" HorizontalOptions="FillAndExpand" Placeholder="Marca" Keyboard="Text"/>
@@ -14,7 +14,7 @@
             <Entry x:Name="eDescription" HorizontalOptions="FillAndExpand" Placeholder="Descripcion" Keyboard="Text"/>
             <Entry x:Name="ePrice" HorizontalOptions="FillAndExpand" Placeholder="Precio" Keyboard="Numeric"/>
             <Button x:Name="bAdd" Text="Agregar" Clicked="bAdd_Click"/>
-            <Button x:Name="bPhoto" Text="Tomar foto"/>
+            <Button x:Name="bPhoto" Text="Tomar foto" Clicked="bTakePhoto_Click"/>
             <Button x:Name="bMap" Text="Mapa"/>
 
         </StackLayout>
