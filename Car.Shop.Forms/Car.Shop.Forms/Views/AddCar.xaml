@@ -15,7 +15,7 @@
             <Entry x:Name="ePrice" HorizontalOptions="FillAndExpand" Placeholder="Precio" Keyboard="Numeric"/>
             <Button x:Name="bAdd" Text="Agregar" Clicked="bAdd_Click"/>
             <Button x:Name="bPhoto" Text="Tomar foto" Clicked="bTakePhoto_Click"/>
-            <Button x:Name="bMap" Text="Mapa"/>
+            <Button x:Name="bMap" Text="Mapa" Clicked="bMap_Clicked"/>
 
         </StackLayout>
     </ContentPage.Content>

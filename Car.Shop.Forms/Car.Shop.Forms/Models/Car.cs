@@ -13,7 +13,7 @@ namespace Car.Shop.Forms.Models
         public string Description { get; set; }
         public int Year { get; set; }
         public string PhotoUrl { get; set; }
-        public decimal? Lat { get; set; }
-        public decimal? Lon { get; set; }
+        public double? Lat { get; set; }
+        public double? Lon { get; set; }
     }
 }

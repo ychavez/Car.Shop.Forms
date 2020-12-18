@@ -1,4 +1,5 @@
 ﻿using Car.Shop.Forms.Context;
+using Plugin.Geolocator;
 using Plugin.Media.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,9 @@ namespace Car.Shop.Forms.Views
         }
         private async void bAdd_Click(object sender, EventArgs e)
         {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 20;
+            var position = await locator.GetPositionAsync();
             new RestService().SetCars(new Models.Car
             {
                 Brand = eBrand.Text,
@@ -26,7 +30,9 @@ namespace Car.Shop.Forms.Views
                 Model = eModel.Text,
                 Price = decimal.Parse(ePrice.Text),
                 Year = int.Parse(eYear.Text),
-                PhotoUrl = "https://i.blogs.es/727241/ncv-06/450_1000.jpg"
+                PhotoUrl = "https://i.blogs.es/727241/ncv-06/450_1000.jpg",
+                Lat = position.Latitude,
+                Lon = position.Longitude
             });
             await DisplayAlert("Agregado", "El auto se ha agregago", "Aceptar");
             MessagingCenter.Send<Page>(this, "Update");
@@ -44,8 +50,8 @@ namespace Car.Shop.Forms.Views
                 }
             
             }
-
-
         }
+
+        private async void bMap_Clicked(object sender, EventArgs e) => await Navigation.PushAsync(new MyMap());
     }
 }
